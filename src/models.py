@@ -30,15 +30,20 @@ class Event(BaseModel):
     event_id: str
     company_id: str
     occurred_on: date
-    event_type: str
+    event_type: Literal[
+        "funding","mna","product_release","integration","partnership",
+        "customer_win","leadership_change","regulatory","security_incident",
+        "pricing_change","layoff","hiring_spike","office_open","office_close",
+        "benchmark","open_source_release","contract_award","other"
+    ]
     title: str
     description: Optional[str] = None
     round_name: Optional[str] = None
     investors: List[str] = []
-    amount_usd: Optional[float] = None
+    amount_usd: Optional[float] = None  # funding, contract, pricing deltas
     valuation_usd: Optional[float] = None
-    actors: List[str] = []
-    tags: List[str] = []
+    actors: List[str] = []  # investors, partners, customers, execs
+    tags: List[str] = []  # e.g., "Series B", "SOC2", "HIPAA"
     schema_version: str = "2.0.0"
     provenance: List[Provenance] = []
 
@@ -50,7 +55,7 @@ class Snapshot(BaseModel):
     job_openings_count: Optional[int] = None
     engineering_openings: Optional[int] = None
     sales_openings: Optional[int] = None
-    hiring_focus: List[str] = []
+    hiring_focus: List[str] = []  # e.g., "sales","ml","security"
     pricing_tiers: List[str] = []
     active_products: List[str] = []
     geo_presence: List[str] = []
@@ -63,7 +68,7 @@ class Product(BaseModel):
     company_id: str
     name: str
     description: Optional[str] = None
-    pricing_model: Optional[str] = None
+    pricing_model: Optional[str] = None # "seat", "usage", "tiered"
     pricing_tiers_public: List[str] = []
     ga_date: Optional[date] = None
     integration_partners: List[str] = []
@@ -77,7 +82,7 @@ class Leadership(BaseModel):
     person_id: str
     company_id: str
     name: str
-    role: str
+    role: str  # CEO, CTO, CPO, etc.
     is_founder: bool = False
     start_date: Optional[date] = None
     end_date: Optional[date] = None
