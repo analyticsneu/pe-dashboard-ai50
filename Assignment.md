@@ -127,8 +127,9 @@ By the end of this assignment, the “Quanta team” (you) must deliver a **PE D
 
 **Tasks**
 1. Use `src/models.py` (provided) — Company, Event, Snapshot, Product, Leadership, Visibility
-2. For each scraped source, call the LLM with an **instructor-style** prompt to fill the Pydantic model
-3. Save results as `data/structured/<company_id>.json`
+2. For each scraped source, call the LLM with an **instructor-style** prompt to fill the Pydantic model. 
+3. NOTE: YOU WILL HAVE TO USE THE INSTRUTOR PYTHON LIBRARY. THIS IS JUST STARTER CODE
+4. Save results as `data/structured/<company_id>.json`
 
 **Checkpoint**
 - At least 5 companies with full payloads (company + events + snapshots ...)
